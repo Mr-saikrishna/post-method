@@ -6,44 +6,73 @@
 	<title></title>
 	<style type="text/css">
 	 body{
-	 	background-image:url(https://img.freepik.com/premium-photo/abstract-white-gray-background-abstract-clean-background-blurred-patterns-light-pale-background-abstract-pale-geometric-pattern_39704-4170.jpg) ;
+	 	background-image:url(https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Colorful-Circle-Simple-Background-Image-1.jpg) ;
 	 	background-size: cover;
 	 }
 	 #username{
-			padding: .7%;
-			border:dotted;
+			padding: .20%;
 			border-color: black;
-			background-color:lightgrey;
+			background-color:whitesmoke;
+			margin: 10px;
+
+
 		}
 	#password{
-			padding: .7%;
-			border:dotted;
+			padding: .20%;
 			border-color: black;
-			background-color:lightgrey;}
+			background-color:whitesmoke;
+			margin-left: 10px;
+
+		}
 		#btn{
-			padding: .2%;
-			border: double;
+			padding: .5%;
+			border: solid;
 			border-color: black;
-			border-radius:35%;
+			border-radius:70%;
+
+		} 
+		#select{
+			padding: .20%;
+			border-color: black;
+			background-color: whitesmoke;
+			margin: 10px;
+		}
 	</style>
 
 </head>
 <body><center>
 	<p><input  placeholder="enter name" Id="username"/></p>
-	<input placeholder="enter password" Id="password">
+	<input placeholder="enter password" Id="password"></br>
+		<select id="select">
+			<option>select a car</option>
+		<option value="Rangerover">Rangerover</option>
+		<option value="landcruize">landcruize</option>
+		<option valur="porsche">porsche</option>
+		<option value="Thar">Thar</option>
+	</select></br>
+	<input type="radio" name="gender" id="male"/>male
+	<input type="radio" name="gendr" id="female"/>female
+
 	<p><button Id="btn" onclick="submit()">submit</button></p></center>
 	<script type="text/javascript">
 		function submit(){
 			var username=document.getElementById("username").value
 			var password=document.getElementById("password").value
+			var select=document.getElementById("select").value
+			var gmale=document.getElementById("male").checked
+			var gfemale=document.getElementById("female").checked
+			if(gmale==true) var gender="male"
+				else var gender="female"
 			console.log(username)
 			console.log(password)
+			console.log(select)
+			console.log(gender)
 			fetch("http://localhost:3000/newData",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
 			},
-			body:JSON.stringify({name:username,password})
+			body:JSON.stringify({name:username,password,select,gender})
 		})
 		.then((res)=>{
 			console.log(res)
